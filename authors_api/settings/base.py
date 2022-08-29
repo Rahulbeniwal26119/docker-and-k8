@@ -1,13 +1,18 @@
+from datetime import datetime
 from pathlib import Path
 import environ
+import os
+
 
 env = environ.Env()
 
-ROOT_DIR = Path(__file__).resolve().parent.parent.parent
+ROOT_DIR = Path(__file__).resolve(
+).parent.parent.parent
 APPS_DIR = ROOT_DIR / 'core_apps'
 
 
-DEBUG = env.bool("DJANGO_DEBUG", default=False)
+DEBUG = env.bool(
+    "DJANGO_DEBUG", default=False)
 
 
 # Application definition
@@ -32,9 +37,11 @@ THIRD_PARTY_APPS = [
     "corsheaders"
 ]
 
-LOCAL_APPS = ["core_apps.common", "core_apps.profiles", "core_apps.users"]
+LOCAL_APPS = ["core_apps.common",
+              "core_apps.profiles", "core_apps.users"]
 
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + \
+    THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -70,8 +77,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'authors_api.wsgi.application'
 
-DATABASES = {"default": env.db("DATABASE_URL")}  # new
-DATABASES["default"]["ATOMIC_REQUESTS"] = True  # new
+DATABASES = {"default": env.db(
+    "DATABASE_URL")}  # new
+# new
+DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.Argon2PasswordHasher',
@@ -117,13 +126,15 @@ SIDE_ID = 1
 
 ADMIN_URL = 'superadmin/'
 
-ADMINS = [("""Rahul Beniwal""", "rahulbeniwal26119@gmail.com")]
+ADMINS = [("""Rahul Beniwal""",
+           "rahulbeniwal26119@gmail.com")]
 
 MANAGERS = ADMINS
 
 STATIC_URL = '/staticfiles/'
 
-STATIC_ROOT = str(ROOT_DIR / 'staticfiles')
+STATIC_ROOT = str(
+    ROOT_DIR / 'staticfiles')
 
 STATICFILES_DIRS = []
 
@@ -134,8 +145,51 @@ STATICFILES_FINDERS = [
 
 MEDIA_URLS = '/mediafiles/'
 
-MEDIA_ROOT = str(ROOT_DIR / 'mediafiles')
+MEDIA_ROOT = str(
+    ROOT_DIR / 'mediafiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_URLS_REGEX = r'^/apis/.*$'
+
+if not os.path.exists("logs"):
+    os.makedirs("logs")
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            # '()': "coloredlogs.ColoredFormatter",
+            "format": "%(levelname)s %(name)-12s %(asctime)s"
+            " %(module)s %(process)d %(thread)d %(message)s"
+        },
+        "simple": {
+            "format": "{asctime} {levelname} {module} {lineno} {message}",
+            "style": "{"
+        }
+    },
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "rich.logging.RichHandler",
+            "formatter": "verbose"
+        },
+        "file": {
+            "level": "INFO",
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": f"logs/{datetime.now().date().today()}.logs",
+            "maxBytes": 1024 ** 2 * 30,  # 30 MB
+            "backupCount": 10000,
+            "formatter": 'simple'
+        }
+    },
+    "root": {"level": "INFO", "handlers": ["console"]},
+    "loggers": {
+        "author_live": {
+            "level": "INFO",
+            "handlers": ["console", "file"],
+            "propagate": True
+        }
+    }
+}
