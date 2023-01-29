@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create User</title>
+</head>
+<body>
+    <form action="{% url 'create_user' %}" method="post">
+        {% csrf_token %}
+        <!-- <div class="form-group">
+            {{ form.user_name }}
+        </div>
+        <div class="form-group">
+            {{ form.password }}
+        </div> -->
+        <div class="form-group ">
+            {{ form }}
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn btn-success">
+        </div>
+    </form>
+</body>
+</html>

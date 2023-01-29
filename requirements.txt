@@ -1,0 +1,15 @@
+appdirs==1.4.4
+asgiref==3.6.0
+commonmark==0.9.1
+Django==4.1.4
+django-extensions==3.2.1
+djangorestframework==3.14.0
+jedi==0.18.2
+parso==0.8.3
+prompt-toolkit==3.0.36
+ptpython==3.0.22
+Pygments==2.14.0
+pytz==2022.7
+rich==13.1.0
+sqlparse==0.4.3
+wcwidth==0.2.6
