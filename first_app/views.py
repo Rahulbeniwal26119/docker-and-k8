@@ -7,15 +7,17 @@ from first_app.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from django.shortcuts import render
 from first_app.view_utils import create_custom_user
-
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 # Create your views here.
 
 
+@api_view()
 def home_page(request):
     """
     some docstring 
     """
-    return JsonResponse({
+    return Response({
         "message": "Welcome",
         "timestamp": datetime.now()
     })
