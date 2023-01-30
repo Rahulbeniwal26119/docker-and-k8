@@ -1,14 +1,15 @@
+import pathlib
+import os
 from datetime import datetime
 
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.http import JsonResponse
-from first_app.forms import UserCreationForm
-from django.contrib.auth import get_user_model
 from django.shortcuts import render
-from first_app.view_utils import create_custom_user
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+
+from first_app.forms import UserCreationForm
+from first_app.view_utils import create_custom_user
 # Create your views here.
 
 
@@ -33,8 +34,6 @@ def redirect_url(request):
 def create_user(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
-        import pathlib
-        import os
         if not pathlib.Path("logged_details").exists():
             os.mkdir("logged_details")
         if form.is_valid():
