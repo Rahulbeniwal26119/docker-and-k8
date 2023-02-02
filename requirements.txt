@@ -8,6 +8,8 @@ coreapi==2.3.3
 coreschema==0.0.4
 Django==4.1.4
 django-extensions==3.2.1
+django-grappelli==3.0.4
+django-tinymce==3.5.0
 djangorestframework==3.14.0
 drf-yasg==1.21.4
 idna==3.4
@@ -19,6 +21,7 @@ MarkupSafe==2.1.2
 openapi-codec==1.3.2
 packaging==23.0
 parso==0.8.3
+Pillow==9.4.0
 prompt-toolkit==3.0.36
 ptpython==3.0.22
 pycodestyle==2.10.0
@@ -30,6 +33,7 @@ rich==13.1.0
 ruamel.yaml==0.17.21
 ruamel.yaml.clib==0.2.7
 simplejson==3.18.1
+six==1.16.0
 sqlparse==0.4.3
 tomli==2.0.1
 uritemplate==4.1.1

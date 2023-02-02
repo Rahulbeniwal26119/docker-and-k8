@@ -1,0 +1,5 @@
+Command to create a names volume with django 
+
+docker run -p 8000:8000 -v logged_users:/docker_app/logged_details 1265ee914834
+
+"/home/rahul/docker

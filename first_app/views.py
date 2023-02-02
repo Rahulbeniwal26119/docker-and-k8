@@ -2,7 +2,7 @@ import pathlib
 import os
 from datetime import datetime
 
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.shortcuts import render
 from rest_framework.decorators import api_view
@@ -38,12 +38,14 @@ def create_user(request):
             os.mkdir("logged_details")
         if form.is_valid():
             data = form.cleaned_data
-            create_custom_user(data['user_name'],
+            create_custom_user(data['username'],
                                data['email'], data['password'])
             with open("logged_details/signed_users.txt", "a", encoding="utf-8") as f:
-                f.write(f"{data['user_name']} => {data['email']} \n")
+                f.write(f"{data['username']} => {data['email']} \n")
 
             return HttpResponseRedirect(reverse('homepage'))
+        else:
+            return JsonResponse(form.errors, status=400)
     else:
         form = UserCreationForm()
     return render(request, 'create_user.html', {'form': form})
