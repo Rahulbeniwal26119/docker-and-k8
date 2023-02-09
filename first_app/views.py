@@ -19,7 +19,7 @@ def home_page(request):
     some docstring 
     """
     return Response({
-        "message": "Welcome",
+        "message": "Welcome!!!",
         "timestamp": datetime.now()
     })
 

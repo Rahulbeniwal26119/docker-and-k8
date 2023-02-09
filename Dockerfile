@@ -22,7 +22,11 @@ RUN python3 manage.py migrate
 
 RUN python3 manage.py collectstatic --noinput
 
-EXPOSE 8000
+ENV PORT 8000
+
+RUN echo ${PORT}
+
+EXPOSE $PORT 
 
 # VOLUME [ "/docker_app/logged_details" ]
 CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
