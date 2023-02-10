@@ -23,6 +23,18 @@ def home_page(request):
         "timestamp": datetime.now()
     })
 
+@api_view()
+def get_star_war_api_data(request):
+    import requests
+    from rest_framework import status
+    url = "https://swapi.dev/api/films/"
+    response = requests.get(url)
+    if response.status_code not in [200, 201]:
+        return Response({
+            "error": "Failed to fetch details",
+            "reason": response.text
+        })
+    return Response(response.json())
 
 def redirect_url(request):
     """

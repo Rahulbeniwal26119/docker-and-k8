@@ -37,3 +37,13 @@ docker volume inspect 1a2fd0f9e679337e4c856f71fd317a723518f2cbd914ca902f16a62c2a
 <div style="margin-left:30px"><code>docker run -p 8000:80 --env-file .env django_docker</code></div>
 
 
+### Build Args
+<li>Build args are passed when building the image these are mainly use to replace docker images variables by values given when building image</li> 
+<br>
+<p style="margin-left:30px" > Defined as </p>
+<div style="margin-left:30px"> <i> <b>ARG DEFAULT_PORT=8000</i> <br> <i>ENV PORT ${DEFAULT_PORT}</b></i>
+</div>
+<br>
+<div style="margin-left:30px">
+    <code>docker build -t django_docker:dev --build-arg DEFAULT_PORT=9000 . </code>
+</div>

@@ -22,7 +22,12 @@ RUN python3 manage.py migrate
 
 RUN python3 manage.py collectstatic --noinput
 
-ENV PORT 8000
+# build args are use to control default value for environment variables
+
+
+ARG DEFAULT_PORT=8000
+
+ENV PORT ${DEFAULT_PORT}
 
 RUN echo ${PORT}
 
