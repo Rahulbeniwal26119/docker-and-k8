@@ -33,5 +33,8 @@ RUN echo ${PORT}
 
 EXPOSE $PORT 
 
+# RUN apt update
+# RUN apt install -y httpie
+
 # VOLUME [ "/docker_app/logged_details" ]
 CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]

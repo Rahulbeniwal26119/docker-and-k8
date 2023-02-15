@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import datetime
 import os
+import pymongo
 
 from pathlib import Path
 
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-gu+4-ik1&q*__ibusz64-$_=haa3*x!!5tbv=613+pil-^n*+o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -189,3 +190,6 @@ LOGGING = {
 }
 
 AUTH_USER_MODEL = "first_app.CustomUser"
+# mongodb is the name of container of my network mynet
+MONGO_CLIENT = pymongo.MongoClient("mongodb://mongodb:27017/")
+DJANGO_DOCKER = MONGO_CLIENT["django_docker"]
