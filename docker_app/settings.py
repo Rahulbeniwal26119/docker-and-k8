@@ -190,6 +190,8 @@ LOGGING = {
 }
 
 AUTH_USER_MODEL = "first_app.CustomUser"
-# mongodb is the name of container of my network mynet
-MONGO_CLIENT = pymongo.MongoClient("mongodb://mongodb:27017/")
+# mongodb is the name of container of my network mynet 
+MONGO_UN = os.environ.get("MONGODB_USERNAME")
+MONGO_PS = os.environ.get("MONGODB_PASSWORD")
+MONGO_CLIENT = pymongo.MongoClient(f"mongodb://{MONGO_UN}:{MONGO_PS}@mongodb:27017/")
 DJANGO_DOCKER = MONGO_CLIENT["django_docker"]

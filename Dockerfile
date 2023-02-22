@@ -33,6 +33,9 @@ RUN echo ${PORT}
 
 EXPOSE $PORT 
 
+ENV MONGODB_USERNAME="rahul"
+ENV MONGODB_PASSWORD="rahul111"
+
 # RUN apt update
 # RUN apt install -y httpie
 
