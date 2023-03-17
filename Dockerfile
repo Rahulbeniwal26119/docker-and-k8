@@ -39,5 +39,20 @@ ENV MONGODB_PASSWORD="rahul111"
 # RUN apt update
 # RUN apt install -y httpie
 
-# VOLUME [ "/docker_app/logged_details" ]
+# ENTRYPOINT is used to run a command when the container starts after apending to the intial one
+
+# ENTRYPOINT [ "python3", "manage.py" ]
+
+# -----------------*--------------------------------------------------------
+# | docker run --name backend -p 8000:8000 backend runserver 0.0.0.0:8000  |
+# -----------------*--------------------------------------------------------
+
+# VOLUME [ "/docker_app/logged_details" ] created anonymous volume
+
 CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
+
+# while CMD command will be overwrittern by the command passed in the docker run command
+# -----------------*-------------------------------------------------------------------------
+# | docker run --name backend -p 8000:8000 backend python3 manage.py runserver 0.0.0.0:8000 |
+# -----------------*-------------------------------------------------------------------------
+

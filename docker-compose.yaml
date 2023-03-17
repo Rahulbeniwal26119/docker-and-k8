@@ -1,0 +1,40 @@
+version: "3.8"
+services:
+  mongodb:
+    image: 'mongo'
+    volumes:
+      - /home/rahul/mongo_cont
+    env_file:
+      - ./env/mongo.env
+    ports:
+      - 27017:27017
+    container_name: mongodb
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - logs:/docker_app/logs
+      - .:/docker_app
+      - /docker_app/venv
+    environment:
+      - MONGODB_USERNAME=django
+      - MONGODB_USERNAME=djangoadmin
+    depends_on:
+      - mongodb
+    container_name: backend
+  frontend:
+    build:
+      context: frontend
+    ports:
+      - 3000:3000
+    # -it represents interactive terminal
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+    container_name: frontend
+volumes:
+  logs:
