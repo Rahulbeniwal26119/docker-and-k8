@@ -1,4 +1,4 @@
-from nginx:stable-alpine
+FROM nginx:stable-alpine
 
 WORKDIR /etc/nginx/conf.d
 
