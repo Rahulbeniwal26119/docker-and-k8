@@ -167,3 +167,13 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 logged_details/signed_users.txt
+CachedData/
+CachedExtensions/
+Cookies
+Cookies-journal
+Network Persistent State
+Preferences
+TransportSecurity
+User/
+languagepacks.json
+machineid
