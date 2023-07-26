@@ -39,5 +39,34 @@ Expose types
 ### Get service status
     kubectl get services
 
+### Delete service
+    kubectl delete service backen
+
 ### Minicube specific command to provide external ip to deployment (localhost only)
     minikube service backend
+
+## scaling pods
+    kubectl scale deployment/backend --replicas=3
+
+## Restrarting a deployment
+    kubectl rollout restart deployment <deployment_name>
+
+
+## Get update or restart status
+    kubectl rollout status deployment/backend
+
+
+## Update image
+    kubectl set image deployment/<deployment_name>  <container_name>=<image_source_docker_hub>:<image_tag>
+
+    Eg: kubectl set image deployment/backend  kube-backend=rbeniwal26119/kube-backend:2
+
+## Roollout Failed pods or deployments
+
+    kubectl rollout undo deployment/backend
+
+## Get Rollout history
+     kubectl rollout history deployment/backend
+    
+## Rollout to revision
+    kubectl rollout undo deployment/backend --to-revision=1

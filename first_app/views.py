@@ -22,7 +22,7 @@ def home_page(request):
     """
     some docstring
     """
-    return Response({"message": "Welcome!!!", "timestamp": datetime.now()})
+    return Response({"message": "Welcome!!!!!", "timestamp": datetime.now()})
 
 
 @api_view()
