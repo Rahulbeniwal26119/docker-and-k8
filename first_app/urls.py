@@ -6,11 +6,13 @@ from first_app.views import (
     create_user,
     get_fav_list,
     store_user_fav,
+    exit_server
 )
 
 
 urlpatterns = [
     path("", home_page, name="homepage"),
+    path("exit/", exit_server, name="exit"),
     path("redirect/", redirect_url, name="redirect"),
     path("star-war/", get_star_war_api_data, name="star war"),
     path("create-user/", create_user, name="create_user"),

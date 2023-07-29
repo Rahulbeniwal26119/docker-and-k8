@@ -25,6 +25,12 @@ def home_page(request):
     return Response({"message": "Welcome!!!!!", "timestamp": datetime.now()})
 
 
+def exit_server(request):
+    """
+        Crash django 
+    """
+    os._exit(0)
+
 @api_view()
 def get_star_war_api_data(request):
     import requests

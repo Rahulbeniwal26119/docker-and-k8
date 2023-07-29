@@ -70,3 +70,16 @@ Expose types
     
 ## Rollout to revision
     kubectl rollout undo deployment/backend --to-revision=1
+
+## Create a master deployment file with all kube objects
+    combine all specification file and seprate them with --- (Order Matters)
+
+## Assigning a group to related kube objects
+    Update metadata section as
+    
+    metadata:
+      labels:
+        group: group_name
+
+## Stopping all kube object (deployment, services and others) by group
+    kubectl delete deployments,service -l group=group_name
