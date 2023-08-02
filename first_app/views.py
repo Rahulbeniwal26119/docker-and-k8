@@ -13,6 +13,8 @@ from first_app.view_utils import create_custom_user
 from django.conf import settings
 from bson import json_util
 import simplejson as json 
+from django.views.decorators.csrf import csrf_exempt
+
 
 # Create your views here.
 
@@ -49,7 +51,7 @@ def redirect_url(request):
     print(request.META.get("HTTP_REFERER"))
     return HttpResponseRedirect(reverse("homepage"))
 
-
+@csrf_exempt
 def create_user(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
@@ -67,6 +69,12 @@ def create_user(request):
     else:
         form = UserCreationForm()
     return render(request, "create_user.html", {"form": form})
+
+@api_view(["GET"])
+def get_users(request):
+    with open("logged_details/signed_users.txt", "r", encoding="utf-8") as f:
+        users = f.readlines()
+    return Response({"users": users})
 
 
 @api_view(["POST"])

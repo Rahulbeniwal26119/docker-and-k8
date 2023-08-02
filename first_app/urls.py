@@ -6,7 +6,8 @@ from first_app.views import (
     create_user,
     get_fav_list,
     store_user_fav,
-    exit_server
+    exit_server,
+    get_users
 )
 
 
@@ -16,6 +17,7 @@ urlpatterns = [
     path("redirect/", redirect_url, name="redirect"),
     path("star-war/", get_star_war_api_data, name="star war"),
     path("create-user/", create_user, name="create_user"),
+    path("get-users/", get_users, name="get_users"),
     path("fav-list/", get_fav_list, name="get_fav_list"),
     path("store-fav/", store_user_fav, name="store_user_fav")
 ]
