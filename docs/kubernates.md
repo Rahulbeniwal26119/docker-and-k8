@@ -74,6 +74,9 @@ Expose types
 ## Create a master deployment file with all kube objects
     combine all specification file and seprate them with --- (Order Matters)
 
+## Update deployment from specification files
+    kubectl apply -f=kube-volumes.yaml
+
 ## Assigning a group to related kube objects
     Update metadata section as
     

@@ -8,6 +8,7 @@ spec:
     matchLabels:
       app: kube-backend
       tier: backend
+  type: LoadBalancer
   template:
     metadata:
       labels:
