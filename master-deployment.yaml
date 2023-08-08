@@ -43,6 +43,15 @@ spec:
       containers:
         - name: kube-backend
           image: rbeniwal26119/kube-backend:latest
+          # env:
+          #   - name: USER_DATA_DIR
+          #     value: "data"
+          env:
+            - name: USER_DATA_DIR
+              valueFrom:
+                configMapKeyRef:
+                  name: kube-backend-configmap
+                  key: USER_DATA_DIR
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
