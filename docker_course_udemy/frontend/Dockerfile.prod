@@ -1,0 +1,26 @@
+# adding docker file for node
+FROM node:18.14.1-buster-slim as build_step
+
+WORKDIR /frontend
+
+COPY ./package.json ./
+
+RUN npm install
+
+COPY . ./
+
+RUN npm run build
+
+# multi stage docker file
+
+FROM nginx:stable-alpine
+
+COPY --from=build_step /frontend/build /usr/share/nginx/html
+
+EXPOSE 80 
+
+######### Builiding till a specif target #######
+##### docker build --target build_step . #######
+################################################
+
+CMD ["nginx", "-g", "daemon off;"]

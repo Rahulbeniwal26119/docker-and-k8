@@ -1,0 +1,84 @@
+.main-h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #242020;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid #fff ;
+    border-radius: 5px;
+    width: 80%;
+    text-align: center;
+    padding: 2%;
+    background-image: linear-gradient(to right, #fff 0%, #fda085 51%, #f6d365 80%, #fff 100%);
+}
+
+.App{
+    margin: 0 !important;
+    padding: 0;
+    background-color: #2b2626;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.add-task{
+    border: none;
+    border-radius: 5px;
+    width: 60%;
+    padding: 2%;
+}
+
+.add-button{
+    border: none;
+    border-radius: 5px;
+    padding: 2%;
+    margin-top: 3%;
+    width: 20%;
+    /* margin-bottom: 5%; */
+}
+
+/* remove the extra margin and padding from main page */
+body{
+    margin: 0 !important;
+    padding: 0;
+}
+
+.todo-list{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    width: 100%;
+}
+
+.todo{
+    margin: 2%;
+    padding: 2%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    border: 1px solid #fff;
+    border-radius: 5px;
+    background-image: linear-gradient(to right, #fff 0%, #fda085 51%, #f6d365 80%, #fff 100%);
+}
+
+.task {
+    display: inline;
+}
+
+.delete-button{
+    border: none;
+    border-radius: 5px;
+    /* display: block; */
+    padding: 2%;
+    margin-top: 3%;
+    width: 10%;
+    /* margin-bottom: 5%; */
+}
+
+ul.todo-list{
+    list-style: none;
+    padding: 0;
+}

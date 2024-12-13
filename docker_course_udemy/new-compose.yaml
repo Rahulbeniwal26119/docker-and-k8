@@ -1,0 +1,10 @@
+version: "3"
+services:
+  backend:
+    image: rbeniwal26119/kube-backend:latest
+    volumes:
+      - backend:/docker_app/logged_details
+    ports:
+      - 8000:8000
+volumes:
+  backend:

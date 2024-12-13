@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  labels:
+    group: backend
+spec:
+  selector:
+    app: kube-backend
+    tier: backend
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+      name: http
+    - protocol: UDP
+      port: 8001
+      targetPort: 8001
+      name: https
+  type: LoadBalancer 
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-backend
+  labels:
+    group: backend
+spec:
+  replicas: 1
+  selector:
+    # matchLabels:
+    #   app: kube-backend
+    #   tier: backend
+    matchExpressions:
+      - {key: app, operator: In, values: [kube-backend]}
+      - {key: tier, operator: In, values: [backend]}
+  template:
+    metadata:
+      labels:
+         app: kube-backend
+         tier: backend
+    spec:
+      containers:
+        - name: kube-backend
+          image: rbeniwal26119/kube-backend:latest
+          # env:
+          #   - name: USER_DATA_DIR
+          #     value: "data"
+          env:
+            - name: USER_DATA_DIR
+              valueFrom:
+                configMapKeyRef:
+                  name: kube-backend-configmap
+                  key: USER_DATA_DIR
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8000
+            initialDelaySeconds: 10
+
